@@ -81,11 +81,10 @@ test = {
           >>> x = None # remember to review the rules of WWPD given above!
           >>> x
           >>> lambda x: x
-          4f02258d689b15b516174b381ad2aef8
-          # locked
+          Function
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
@@ -94,15 +93,13 @@ test = {
           >>> z = 3
           >>> e = lambda x: lambda y: lambda: x + y + z
           >>> e(0)(1)()
-          ef6b0e7c554b5515158e88d1ee908645
-          # locked
+          4
           >>> f = lambda z: x + z
           >>> f(3)
-          ab06d135c02ab203238caafbf77976ce
-          # locked
+          Error
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
@@ -110,28 +107,22 @@ test = {
           >>> higher_order_lambda = lambda f: lambda x: f(x)
           >>> g = lambda x: x * x
           >>> higher_order_lambda(2)(g) # Which argument belongs to which function call?
-          ab06d135c02ab203238caafbf77976ce
-          # locked
+          Error
           >>> higher_order_lambda(g)(2)
-          ef6b0e7c554b5515158e88d1ee908645
-          # locked
+          4
           >>> call_thrice = lambda f: lambda x: f(f(f(x)))
           >>> call_thrice(lambda y: y + 1)(0)
-          0f10194daf41a11a30f4adc80d959f28
-          # locked
+          3
           >>> print_lambda = lambda z: print(z)
           >>> print_lambda
-          4f02258d689b15b516174b381ad2aef8
-          # locked
+          Function
           >>> one_thousand = print_lambda(1000)
-          406c98af0b3aa9a2c9dbd76d898bcda3
-          # locked
+          1000
           >>> one_thousand
-          358b0ae001277273d8cd480ce5dbfb82
-          # locked
+          Nothing
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         }
       ],
       'scored': False,
