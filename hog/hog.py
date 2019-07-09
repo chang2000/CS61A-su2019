@@ -298,8 +298,8 @@ def make_averaged(fn, num_samples=1000):
         while times < num_samples:
             sum += fn(*arg)
             times += 1
-        return float(sum) / num_samples 
-    return get_sum 
+        return float(sum) / num_samples
+    return get_sum
 
     # END PROBLEM 8
 
@@ -372,9 +372,9 @@ def bacon_strategy(score, opponent_score, margin=8, num_rolls=4):
     # BEGIN PROBLEM 10
     gain_by_bacon = free_bacon(opponent_score)
     if gain_by_bacon >= margin:
-        return 0 
-    return num_rolls 
-        
+        return 0
+    return num_rolls
+
     # END PROBLEM 10
 
 
@@ -391,15 +391,15 @@ def swap_strategy(score, opponent_score, margin=8, num_rolls=4):
         swp_score, swp_opp = opponent_score, new_score
         if swp_score >= swp_opp:
             return 0
-    
+
     if gain_by_bacon >= margin:
         if is_swap(new_score, opponent_score):
             swp_score, swp_opp = opponent_score, new_score
             if swp_score < swp_opp:
                 return num_rolls
         return 0
-    return num_rolls 
-        
+    return num_rolls
+
     # END PROBLEM 11
 
 

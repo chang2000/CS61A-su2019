@@ -43,25 +43,18 @@ def hailstone(n):
     True
     """
     "*** YOUR CODE HERE ***"
-    times = 0
+    if n == 1:
+        print(1)
+        return 1
 
-    # I define a high order function here and use the scope staff to track the number of times
-    def sub_hailstone(n):
-        nonlocal times
-        times += 1
-        if n == 1:
-            print(1)
-            return
+    elif n % 2 == 0:
+        print(n)
+        return hailstone(n//2) + 1
 
-        elif n % 2 == 0:
-            print(n)
-            return sub_hailstone(n//2)
+    else:
+        print(n)
+        return hailstone(n*3 + 1) + 1
 
-        else:
-            print(n)
-            return sub_hailstone(n*3 + 1)
-
-    sub_hailstone(n)
     return times
 
 
