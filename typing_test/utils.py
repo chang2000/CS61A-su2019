@@ -29,7 +29,7 @@ def readable(file):
 
 def readline(file):
 	"""
-	Return the first unread line from this file, 
+	Return the first unread line from this file,
 	or the empty string if all lines are read.
 	"""
 	return file.readline()
@@ -63,7 +63,7 @@ def split(s, sep=None):
 
 def strip(s, chars=None):
 	"""
-	Return a version of s with characters in chars removed
+	eturn a version of s with characters in chars removed
 	from the start and end.
 
 	By default, removes whitespace characters.
