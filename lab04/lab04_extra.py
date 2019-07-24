@@ -28,4 +28,5 @@ def key_of_min_value(d):
     """
     "*** YOUR CODE HERE ***"
     return list (d.keys()) [list (d.values()).index (min(list(d.values())))]
+    return min(d, key = lambda x: d[x])
 

@@ -93,6 +93,8 @@ def taxicab(a, b):
     9
     """
     "*** YOUR CODE HERE ***"
+    return abs(street(a) - street(b)) + abs(avenue(a) - avenue(b))
+
 
 def flatten(lst):
     """Returns a flattened version of lst.
@@ -111,6 +113,13 @@ def flatten(lst):
     [[1, [1, 1]], 1, [1, 1]]
     """
     "*** YOUR CODE HERE ***"
+    if all([type(ele) == int for ele in lst]):
+        return lst
+    if type(lst[0]) == int:
+        return [lst[0]] + flatten(lst[1:])
+    else:
+        return flatten(lst[0]) + flatten(lst[1:])
+
 
 def replace_leaf(t, old, new):
     """Returns a new tree where every leaf value equal to old has
@@ -142,6 +151,13 @@ def replace_leaf(t, old, new):
     True
     """
     "*** YOUR CODE HERE ***"
+    if is_leaf(t):
+        if label(t) == old:
+            return tree(new)
+        else:
+            return t
+    else:
+        return tree(label(t), [replace_leaf(b, old, new) for b in branches(t)])
 
 # Mobiles
 
@@ -188,11 +204,13 @@ def weight(size):
     """Construct a weight of some size."""
     assert size > 0
     "*** YOUR CODE HERE ***"
+    return ["weight", size]
 
 def size(w):
     """Select the size of a weight."""
     assert is_weight(w), 'must call size on a weight'
     "*** YOUR CODE HERE ***"
+    return w[1]
 
 def is_weight(w):
     """Whether w is a weight."""
@@ -241,6 +259,13 @@ def balanced(m):
     False
     """
     "*** YOUR CODE HERE ***"
+    if is_weight(m):
+        return True
+    else:
+        # b = balanced(end(s) for s in sides(m))
+        if length(left(m)) * total_weight(end(left(m))) != length(right(m)) * total_weight(end(right(m))):
+            return False
+        return balanced(end(left(m))) and balanced(end(right(m)))
 
 def totals_tree(m):
     """Return a tree representing the mobile with its total weight at the root.
@@ -268,6 +293,12 @@ def totals_tree(m):
           2
     """
     "*** YOUR CODE HERE ***"
+    if is_weight(m):
+        return tree(total_weight(m))
+    else:
+        children = [totals_tree(end(s)) for s in branches(m)]
+        return tree(total_weight(m), children)
+
 
 ###################
 # Extra Questions #

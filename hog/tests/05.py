@@ -220,7 +220,7 @@ test = {
       >>> import tests.play_utils
       """,
       'teardown': r"""
-
+      
       """,
       'type': 'doctest'
     }

@@ -84,14 +84,7 @@ def acorn_finder(t):
     if label(t) == 'acorn':
         return True
     else:
-        # print("All the branches ", branches(t))
-        for b in branches(t):
-            if label(b) == 'acorn':
-                return True
-        for b in branches(t):
-            return acorn_finder(b)
-
-        return False
+        return any ([acorn_finder(b) for b in branches(t)])
 
 # Tree ADT
 def tree(label, branches=[]):
@@ -156,3 +149,28 @@ def copy_tree(t):
     5
     """
     return tree(label(t), [copy_tree(b) for b in branches(t)])
+
+# def is_min_heap(t):
+    # if is_leaf(t):
+        # return True
+    # else:
+        # for b in branches(t):
+            # if label(b) > label(t):
+                # return False
+        # return all([is_min_heap(b) for b in branches(t)])
+
+def is_min_heap(t):
+    if is_leaf(t):
+        return True
+    else:
+        for b in branches(t):
+            return is_min_heap(b) and (label(b) < label(t))
+def largest_product(t):
+    if is_leaf(t):
+        return label(t)
+    else:
+        for b in branches(t):
+            return label(t) * largest_product(b)
+test_tree = tree(3,[tree(7,[tree(2)]), tree(8,[tree(1)]), tree(4)])
+print(is_min_heap(test_tree))
+print(largest_product(test_tree))

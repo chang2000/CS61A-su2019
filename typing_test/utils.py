@@ -5,7 +5,7 @@ import string
 # Submitting design questions #
 ###############################
 
-passphrase = '*** PASSPHRASE HERE ***'
+passphrase = 'ratification'
 
 def check_passphrase(p):
     """

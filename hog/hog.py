@@ -22,14 +22,13 @@ def roll_dice(num_rolls, dice=six_sided):
     assert num_rolls > 0, 'Must roll at least once.'
     # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
-    sum = 0
-    get_one = False
+    sum, get_one = 0, False
     for i in range(0,num_rolls):
         cur_val = dice()
         if cur_val == 1:
             get_one = True
         else:
-            sum = cur_val + sum
+            sum += cur_val
 
     if get_one:
         return 1
@@ -137,19 +136,18 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     player = 0  # Which player is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
-    while score0 < goal and score1 < goal:
-
+    while max(score0, score1) < goal:
         if player == 0:
             num_rolls = strategy0(score0, score1)
             score0 += take_turn(num_rolls, score1, dice)
-            if is_swap(score0, score1):
-                score0, score1 = score1, score0
 
-        if player == 1:
+        elif player == 1:
             num_rolls = strategy1(score1, score0)
             score1 += take_turn(num_rolls, score0, dice)
-            if is_swap(score1, score0):
-                score0, score1 = score1, score0
+
+        if (is_swap(score0, score1) and player == 0) or (is_swap(score1, score0) and player == 1):
+            score0, score1 = score1, score0
+
         player = other(player)
     # END PROBLEM 5
     # (note that the indentation for the problem 6 prompt (***YOUR CODE HERE***) might be misleading)
@@ -315,13 +313,14 @@ def max_scoring_num_rolls(dice=six_sided, num_samples=1000):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
-    # max_so_far = 0
-    avg_list = []
+    avg_roll = make_averaged(roll_dice, num_samples)
+    max_val, res = 0, 0
     for i in range(1,11):
-        avg_roll = make_averaged(roll_dice, num_samples)
-        cur_score = avg_roll(i,dice)
-        avg_list.append(cur_score)
-    return (avg_list.index(max(avg_list))) + 1
+        cur_roll= avg_roll(i, dice)
+        if cur_roll > max_val:
+            res = i
+            max_val = cur_roll
+    return res
     # END PROBLEM 9
 
 
