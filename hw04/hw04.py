@@ -305,7 +305,7 @@ class Link:
     >>> s
     Link(5, Link(7, Link(Link(8, Link(9)))))
     >>> print(s)                             # Prints str(s)
-    <5 7 <8 9>>
+    <5 7 iii<8 9>>
     """
     empty = ()
 
