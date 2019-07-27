@@ -324,12 +324,11 @@ class Link:
     def __str__(self):
         string = '<'
         while self.rest is not Link.empty:
-            string += str(self.first) + ' '
+            string += str(self.first) + ', '
             self = self.rest
         return string + str(self.first) + '>'
 
 ## Tree Class ##
-
 class Tree:
     """
     >>> t = Tree(3, [Tree(2, [Tree(5)]), Tree(4)])
@@ -403,3 +402,10 @@ class Tree:
                 tree_str += print_tree(b, indent + 1)
             return tree_str
         return print_tree(self).rstrip()
+
+def prune(tree, num):
+    t.branches = [prune(x, t) or b for b in t.branches if b.label != x]
+
+    # for b in t.branches:
+        # prune(b, x)
+
