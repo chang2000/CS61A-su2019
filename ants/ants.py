@@ -517,7 +517,6 @@ class QueenAnt(ScubaThrower):  # You should change this line
                 # if ant.is_container and ant.ant and not(ant.ant in self.fancier_ants):
                     ant.contained_ant.damage *= 2
                     self.fancier_ants.append(ant.contained_ant)
-
                 curr_place = curr_place.exit
         # END Problem 13
 
@@ -582,14 +581,14 @@ def apply_effect(effect, bee, duration):
     "*** YOUR CODE HERE ***"
     new_action = effect(bee.action, bee)
     old_action = bee.action
-    def final_action(colony):
+    def actual_action(colony):
         nonlocal duration
         if duration == 0:
-            return old_action(colony)
+            old_action(colony)
         else:
             duration -= 1
-            return new_action(colony)
-    bee.action = final_action
+            new_action(colony)
+    bee.action = actual_action
     # END Problem EC
 
 
