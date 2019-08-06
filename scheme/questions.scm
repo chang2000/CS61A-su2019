@@ -9,15 +9,19 @@
 ;; Returns a list of two-element lists
 (define (enumerate s)
   ; BEGIN PROBLEM 17
-  'replace-this-line
-  )
+  (define (helper n s)
+    (if (null? s)
+      nil
+      (cons (cons n (cons (car s) nil)) (helper (+ n 1) (cdr s)))
+      ))
+  (helper 0 s))
   ; END PROBLEM 17
 
 ;; Problem 18
 
 (define (zip pairs)
   ; BEGIN PROBLEM 18
-  'replace-this-line
+  (list (map car pairs) (map cadr pairs))
   )
   ; END PROBLEM 18
 
@@ -36,12 +40,12 @@
 (define (let-to-lambda expr)
   (cond ((atom? expr)
          ; BEGIN PROBLEM 19
-         'replace-this-line
+        expr
          ; END PROBLEM 19
          )
         ((quoted? expr)
          ; BEGIN PROBLEM 19
-         'replace-this-line
+         expr
          ; END PROBLEM 19
          )
         ((or (lambda? expr)
@@ -50,18 +54,18 @@
                (params (cadr expr))
                (body   (cddr expr)))
            ; BEGIN PROBLEM 19
-           'replace-this-line
+           (cons form (cons (map let-to-lambda params) (map let-to-lambda body)))
            ; END PROBLEM 19
            ))
         ((let? expr)
          (let ((values (cadr expr))
                (body   (cddr expr)))
            ; BEGIN PROBLEM 19
-           'replace-this-line
+           (cons (cons 'lambda (cons (car (zip (let-to-lambda values))) (let-to-lambda body))) (cadr (zip (let-to-lambda values))))
            ; END PROBLEM 19
            ))
         (else
          ; BEGIN PROBLEM 19
-         'replace-this-line
+         (map let-to-lambda expr)
          ; END PROBLEM 19
          )))
