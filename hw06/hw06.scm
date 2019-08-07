@@ -26,7 +26,7 @@
 )
 
 (define (cons-all first rests)
-  (map (lambda (x) (append (list first) x)) rests))
+  (map (lambda (x) (cons first x)) rests))
 
 ; List all ways to make change for TOTAL with DENOMS
 (define (list-change total denoms)
